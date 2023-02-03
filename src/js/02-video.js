@@ -10,18 +10,15 @@ const player = new Player("vimeo-player", {
     id: 19231868,
 });
 
-const onPlay = function(data) {
-    
-    if (localStorage.getItem("videoplayer_current_time")) {
-        player.setCurrentTime(localStorage.getItem("videoplayer_current_time"));
-    }
-};
-
-player.on('play', onPlay);
-
 
 player.on("timeupdate", throttle((data) => {
 
     localStorage.setItem("videoplayer_current_time", data.seconds);
 
 }, 1000));
+
+
+if (localStorage.getItem("videoplayer_current_time")) {
+    
+        player.setCurrentTime(localStorage.getItem("videoplayer_current_time"));
+    };
